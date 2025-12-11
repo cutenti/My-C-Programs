@@ -5,19 +5,13 @@
 
 int main()
 {
-    int buff[100];
-    int index = 0;
-    while (scanf("%d", &buff[index]) == 1) {
-        index++;
+    int array[100];
+    int lenArray = 0;
+    while (scanf("%d", &array[lenArray]) == 1) {
+        lenArray++; // В конце считывания эта перемеенная хранит индекс последнего элемента массива
     }
 
-    int lenArray = index;
-    int array[lenArray]; //Скопируем все введенные значения в массив без лишних нулей в конце
-    for (int i = 0; i < lenArray; i++) {
-        array[i] = buff[i];
-    }
-
-    int copyArray[lenArray]; //Скопируем массив для конечного сравнения с отсортированным
+    int copyArray[lenArray]; // Скопируем массив для конечного сравнения с отсортированным
     memcpy(copyArray, array, lenArray * sizeof(int));
 
     printf("Сортируемый массив чисел:\n");
@@ -33,7 +27,7 @@ int main()
     }
     printf("\n");
 
-    int count = 0; //Считаем количество чисел, изменивших место, для кода возврата
+    int count = 0; // Считаем количество чисел, изменивших место, для кода возврата
     for (int i = 0; i < lenArray; i++) {
         if (array[i] != copyArray[i]) {
             count += 1;
