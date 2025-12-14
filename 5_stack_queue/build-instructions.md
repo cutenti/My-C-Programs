@@ -1,7 +1,4 @@
-Реализация стека в Stack.c 
-и командой
-$ gcc Stack.c -c
-переведена в объектный файл Stack.o;
+Реализация стека в Stack.c.
 
 Объявления и описания всех функций лежат в заголовочном файле Stack.h;
 
@@ -9,7 +6,7 @@ $ gcc Stack.c -c
 Она в advancedBracketBalance.c
 
 Чтобы собрать нужно ввести:
-$ gcc -Wall -Wextra advancedBracketBalance.c Stack.o -o balance
+$ gcc -Wall -Wextra advancedBracketBalance.c Stack.c -o balance
 
 Чтобы запустить:
 $ ./balance

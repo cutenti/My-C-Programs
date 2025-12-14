@@ -6,7 +6,7 @@ int ParathesesBalance(const char*);
 
 int main()
 {
-    char string[200]; // можно ли объявить строку через указатель неограниченного размера и туда считать?..
+    char string[200];
     int result;
 
     printf("Введите проверяемую строку:\n");
