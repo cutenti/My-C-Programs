@@ -1,0 +1,6 @@
+add_subdirectory(1_intro)
+add_subdirectory(2_StyleGid)
+add_subdirectory(3_Compilation)
+add_subdirectory(4_libraries_and_optimizations)
+add_subdirectory(5_stack_queue)
+add_subdirectory(lists_6)
