@@ -73,20 +73,36 @@ int circle(int n, int m)
         insert(list, i);
     }
 
-    printList(list);
-
     int k = 0;
 
+    ListNode* prevSicarium = list->tail;
     ListNode* currSicarium = list->head;
-    int toKillNumber;
+    ListNode* toKill = list->head;
 
     while (list->count > 1) {
         k++;
-        if (k == m) {
+
+        if (k == m - 1){
+            prevSicarium = currSicarium;
+        } else if (k == m) {
             printf("Killed sicarium of number %d\n", currSicarium->data);
-            toKillNumber = currSicarium->data;
+            
+            //kill(list, toKillNumber);
+
+            prevSicarium->next = currSicarium->next;
+
+            list->count--;
+            toKill = currSicarium;
             currSicarium = currSicarium->next;
-            kill(list, toKillNumber);
+
+            if (prevSicarium == list->tail) {
+                list->head = toKill->next;
+            } else if (toKill == list->tail) {
+                list->tail = prevSicarium;
+            }
+
+            free(toKill);
+
             k = 0;
             continue;
         }
@@ -96,41 +112,6 @@ int circle(int n, int m)
     int result = list->head->data;
     deleteList(list);
     return result;
-}
-
-int kill(List* list, int number)
-{
-    if (!list) {
-        printf("ОШИБКА: списка не существует\n");
-        return 1;
-    }
-
-    if (list->count == 0) { // если head ни на что не ссылается, значит в списке нет элементов
-        printf("Круг пуст, не удается убить сикария\n");
-        return 1;
-    }
-
-    ListNode* toKill = list->head;
-    int toKillNumber = toKill->data;
-
-    ListNode* prevSicarium = list->tail;
-
-    while (toKillNumber != number) {
-        prevSicarium = toKill;
-        toKill = toKill->next;
-        toKillNumber = toKill->data;
-    }
-    if (prevSicarium == list->tail) {
-        list->head = toKill->next;
-    } else if (toKill == list->tail) {
-        list->tail = prevSicarium;
-    }
-    prevSicarium->next = toKill->next;
-
-    list->count--;
-    free(toKill);
-
-    return 0;
 }
 
 void deleteList(List* list)
