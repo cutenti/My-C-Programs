@@ -75,38 +75,28 @@ int circle(int n, int m)
 
     int k = 0;
 
-    ListNode* prevSicarium = list->tail;
-    ListNode* currSicarium = list->head;
     ListNode* toKill = list->head;
 
     while (list->count > 1) {
         k++;
 
         if (k == m - 1){
-            prevSicarium = currSicarium;
+            list->tail = list->head;
         } else if (k == m) {
-            printf("Killed sicarium of number %d\n", currSicarium->data);
-            
-            //kill(list, toKillNumber);
+            printf("Killed sicarium of number %d\n", list->head->data);
+            toKill = list->head;
 
-            prevSicarium->next = currSicarium->next;
+            list->tail->next = list->head->next;
 
             list->count--;
-            toKill = currSicarium;
-            currSicarium = currSicarium->next;
-
-            if (prevSicarium == list->tail) {
-                list->head = toKill->next;
-            } else if (toKill == list->tail) {
-                list->tail = prevSicarium;
-            }
+            list->head = toKill->next;
 
             free(toKill);
 
             k = 0;
             continue;
         }
-        currSicarium = currSicarium->next;
+        list->head = list->head->next;
     }
 
     int result = list->head->data;
