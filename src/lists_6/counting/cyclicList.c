@@ -80,22 +80,20 @@ int circle(int n, int m)
     while (list->count > 1) {
         k++;
 
-        if (k == m - 1){
-            list->tail = list->head;
-        } else if (k == m) {
-            printf("Killed sicarium of number %d\n", list->head->data);
+        if (k == m) {
             toKill = list->head;
 
             list->tail->next = list->head->next;
 
             list->count--;
-            list->head = toKill->next;
+            list->head = list->head->next;
 
             free(toKill);
 
             k = 0;
             continue;
         }
+        list->tail = list->head;
         list->head = list->head->next;
     }
 
